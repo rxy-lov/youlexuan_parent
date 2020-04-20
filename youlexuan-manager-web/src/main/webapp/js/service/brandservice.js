@@ -22,4 +22,7 @@ app.service("brandservice",function ($http) {
     this.search=function (page,rows,searchEntity) {
         return $http.post('../brand/search.do?page='+page+'&rows='+rows,searchEntity);
     }
+    this.selectOptionList=function () {
+        return $http.post('../brand/selectOptionList.do');
+    }
 })

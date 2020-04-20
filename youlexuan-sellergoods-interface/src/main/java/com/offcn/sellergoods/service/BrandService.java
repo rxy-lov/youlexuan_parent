@@ -4,6 +4,7 @@ import com.offcn.pojo.TbBrand;
 import com.offcn.entity.PageResult;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BrandService {
     public List<TbBrand> findAll();
@@ -18,5 +19,7 @@ public interface BrandService {
     public void delete(Long[] ids);
     //条件查询
     public PageResult findpage(TbBrand tbBrand,int pageNum,int pageSize);
+
+    public  List<Map> selectOptionList();
 
 }

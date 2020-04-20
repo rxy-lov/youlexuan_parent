@@ -76,5 +76,20 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
+
+	//更改审核状态
+	//批量删除
+	$scope.updateStatus=function(sellerId,status){
+		//获取选中的复选框
+		sellerService.updateStatus( sellerId,status).success(
+			function(response){
+				if(response.success){
+					$scope.reloadList();//刷新列表
+				}else {
+					alert("审核失败");
+				}
+			}
+		);
+	}
     
 });	

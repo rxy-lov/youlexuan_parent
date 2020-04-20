@@ -19,7 +19,7 @@ import java.util.List;
  *
  */
 @Service
-public class ItemCatServiceImpl implements ItemCatService {
+public class ItemCatServiceImpl implements ItemCatService{
 
 	@Autowired
 	private TbItemCatMapper itemCatMapper;
@@ -96,5 +96,13 @@ public class ItemCatServiceImpl implements ItemCatService {
 		Page<TbItemCat> page= (Page<TbItemCat>)itemCatMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+	@Override
+	public List<TbItemCat> findByParentId(Long parentId) {
+		TbItemCatExample tbItemCatExample = new TbItemCatExample();
+		Criteria criteria = tbItemCatExample.createCriteria();
+		criteria.andParentIdEqualTo(parentId);
+		return itemCatMapper.selectByExample(tbItemCatExample);
+	}
+
 }

@@ -76,5 +76,41 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
-    
+
+	//根据上级ID查询下级列表
+	$scope.findByParentId=function(parentId){
+		itemCatService.findByParentId(parentId).success(
+			function(response){
+				$scope.list=response;
+			}
+		);
+	}
+
+	$scope.level=1;
+	$scope.entity_1=null;
+	$scope.entity_2=null;
+
+	$scope.setlevel=function (value) {
+		$scope.level=value;
+	}
+	//设置导航、读取列表
+	$scope.selectList=function (entity) {
+		if($scope.level ==1){
+			$scope.entity_1=null;
+			$scope.entity_2=null;
+
+		}
+		if($scope.level ==2){
+			$scope.entity_1=entity;
+			$scope.entity_2=null;
+
+
+		}
+		if($scope.level ==3){
+			$scope.entity_2=entity;
+
+		}
+		$scope.findByParentId(entity.id);
+
+	}
 });	
